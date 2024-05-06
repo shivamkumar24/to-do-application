@@ -18,7 +18,7 @@ const TaskList = () => {
   const [description, setDescription] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  let accountdata = JSON.parse(sessionStorage.getItem("logindata"));
+  let accountdata = JSON.parse(localStorage.getItem("logindata"));
   let userTodoArr = [];
 
   const todosData = useSelector((store) => store.todos);

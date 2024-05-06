@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addtodos, gettodos } from "../Redux/actions";
 import { useState, useReducer } from "react";
 
-let logindata = JSON.parse(sessionStorage.getItem("logindata"));
+let logindata = JSON.parse(localStorage.getItem("logindata"));
 let userid;
 
 if (logindata) {

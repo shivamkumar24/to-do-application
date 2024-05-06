@@ -7,12 +7,12 @@ import { gettodos } from "../Redux/actions";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = JSON.parse(sessionStorage.getItem("isAuth")) || false;
-  const logindata = JSON.parse(sessionStorage.getItem("logindata"));
+  const isAuth = JSON.parse(localStorage.getItem("isAuth")) || false;
+  const logindata = JSON.parse(localStorage.getItem("logindata"));
 
   const handleLogout = () => {
-    sessionStorage.setItem("isAuth", false);
-    sessionStorage.clear();
+    localStorage.setItem("isAuth", false);
+    localStorage.clear();
     dispatch(gettodos);
     navigate("/");
   };
