@@ -1,4 +1,11 @@
-import { Button, Snackbar, TextField, TextareaAutosize } from "@mui/material";
+import {
+  Button,
+  Snackbar,
+  TextField,
+  TextareaAutosize,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addtodos, gettodos } from "../Redux/actions";
 import { useState, useReducer } from "react";
@@ -13,6 +20,7 @@ if (logindata) {
 const initialState = {
   title: "",
   description: "",
+  priorities: "",
   userID: userid,
 };
 
@@ -31,6 +39,7 @@ const reducerFunction = (state, action) => {
 
 const TaskInput = () => {
   const dispatch = useDispatch();
+  const [priority, setPriority] = useState("");
   const todoData = useSelector((store) => store.todos);
   const [productState, setProductState] = useReducer(
     reducerFunction,
@@ -57,8 +66,13 @@ const TaskInput = () => {
         }
 
         if (notThere) {
-          dispatch(addtodos(productState)).then(() => {
-            dispatch(gettodos);
+          const updatedProductState = {
+            ...productState,
+            priorities: priority,
+          };
+
+          dispatch(addtodos(updatedProductState)).then(() => {
+            dispatch(gettodos());
             setSnackbarMessage("Your new todo is added now.");
             setSnackbarSeverity("success");
             setSnackbarOpen(true);
@@ -71,9 +85,13 @@ const TaskInput = () => {
       }
 
       if (todoData.length === 0) {
-        let arr = [productState];
-        dispatch(addtodos(arr)).then(() => {
-          dispatch(gettodos);
+        const updatedProductState = {
+          ...productState,
+          priorities: priority,
+        };
+
+        dispatch(addtodos([updatedProductState])).then(() => {
+          dispatch(gettodos());
           setSnackbarMessage("Your new todo is added now.");
           setSnackbarSeverity("success");
           setSnackbarOpen(true);
@@ -133,6 +151,23 @@ const TaskInput = () => {
             setProductState({ type: "description", payload: e.target.value })
           }
         />
+      </div>
+
+      {/* Select Priority */}
+      <div>
+        <label style={{ fontSize: "15px", fontWeight: "bold", padding: "5px" }}>
+          Priority:
+        </label>
+        <Select
+          fullWidth
+          variant="outlined"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <MenuItem value="Hard">Hard</MenuItem>
+          <MenuItem value="Medium">Medium</MenuItem>
+          <MenuItem value="Easy">Easy</MenuItem>
+        </Select>
       </div>
 
       {/* Button */}

@@ -64,6 +64,11 @@ const TaskList = () => {
   }, [dispatch]);
 
   if (userTodo.length !== 0) {
+    const sortedTodos = userTodo.slice().sort((a, b) => {
+      const priorityOrder = { Hard: 1, Medium: 2, Easy: 3 };
+      return priorityOrder[a.priorities] - priorityOrder[b.priorities];
+    });
+
     return (
       <Box style={{ marginTop: "25px", padding: "10px" }}>
         <Typography
@@ -88,7 +93,7 @@ const TaskList = () => {
             lg: "repeat(4,1fr)",
           }}
         >
-          {userTodo.map((el, ind) => (
+          {sortedTodos.map((el, ind) => (
             <Box
               display="flex"
               flexDirection="column"
@@ -99,10 +104,20 @@ const TaskList = () => {
               border="1px solid red"
               borderRadius="12px"
             >
-              <h2>
-                <span style={{ fontWeight: "bold" }}>Title: </span>
-                {el.title}
-              </h2>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"space-around"}
+              >
+                <h2>
+                  <span style={{ fontWeight: "bold" }}>Title: </span>
+                  {el.title}
+                </h2>
+                <h2>
+                  <span style={{ fontWeight: "bold" }}>Priority: </span>
+                  {el.priorities}
+                </h2>
+              </Box>
               <h3>
                 <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
                 {el.description}
