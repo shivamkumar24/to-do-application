@@ -64,18 +64,13 @@ const TaskList = () => {
   }, [dispatch]);
 
   if (userTodo.length !== 0) {
-    const sortedTodos = userTodo.slice().sort((a, b) => {
-      const priorityOrder = { Hard: 1, Medium: 2, Easy: 3 };
-      return priorityOrder[a.priorities] - priorityOrder[b.priorities];
-    });
-
     return (
       <Box style={{ marginTop: "25px", padding: "10px" }}>
         <Typography
           variant="h4"
           gutterBottom
           fontWeight="bold"
-          style={{ textDecoration: "underline" }}
+          style={{ textDecoration: "underline", textAlign: "center" }}
         >
           Your Todos
         </Typography>
@@ -93,7 +88,7 @@ const TaskList = () => {
             lg: "repeat(4,1fr)",
           }}
         >
-          {sortedTodos.map((el, ind) => (
+          {userTodo.map((el, ind) => (
             <Box
               display="flex"
               flexDirection="column"
@@ -104,40 +99,36 @@ const TaskList = () => {
               border="1px solid red"
               borderRadius="12px"
             >
-              <Box
-                display={"flex"}
-                flexDirection={"row"}
-                justifyContent={"space-around"}
-              >
-                <h2>
-                  <span style={{ fontWeight: "bold" }}>Title: </span>
-                  {el.title}
-                </h2>
-                <h2>
-                  <span style={{ fontWeight: "bold" }}>Priority: </span>
-                  {el.priorities}
-                </h2>
-              </Box>
               <h3>
+                <span style={{ fontWeight: "bold" }}>Title: </span>
+                {el.title}
+              </h3>
+
+              <h4>
+                <span style={{ fontWeight: "bold" }}>Priority: </span>
+                {el.priorities}
+              </h4>
+
+              <h4>
                 <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
                 {el.description}
-              </h3>
-              <Box display="flex" alignItems="center" justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => editTodo(el.id)}
-                >
-                  Update
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => handleDeleteTodo(el.id)}
-                >
-                  Delete
-                </Button>
-              </Box>
+              </h4>
+
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => editTodo(el.id)}
+              >
+                Update
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ marginTop: "12px" }}
+                onClick={() => handleDeleteTodo(el.id)}
+              >
+                Delete
+              </Button>
             </Box>
           ))}
         </Box>
