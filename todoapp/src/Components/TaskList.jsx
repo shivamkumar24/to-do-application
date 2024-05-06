@@ -61,7 +61,7 @@ const TaskList = () => {
   useEffect(() => {
     dispatch(gettodos());
     getUserTodo();
-  }, [dispatch]);
+  }, [dispatch, todosData]);
 
   if (userTodo.length !== 0) {
     return (
