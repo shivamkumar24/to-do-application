@@ -5,7 +5,7 @@ import axios from "axios";
 export const gettodos = () => (dispatch) => {
   dispatch({ type: types.GET_TODO_REQUEST });
   return axios
-    .get(`https://to-do-app-server-6sx6.onrender.com/todos`)
+    .get(`https://notebook-server-8hzk.onrender.com/todos`)
     .then((res) => {
       dispatch({ type: types.GET_TODO_SUCCESS, payload: res.data });
     })
@@ -20,7 +20,7 @@ export const addtodos = (payload) => async (dispatch) => {
   // console.log("payload", payload);
   try {
     let res = await axios.post(
-      `https://to-do-app-server-6sx6.onrender.com/todos`,
+      `https://notebook-server-8hzk.onrender.com/todos`,
       payload
     );
     dispatch({ type: types.ADD_TODO_SUCCESS, payload: res.data });
@@ -37,7 +37,7 @@ export const updatetodos = (editedtodos) => async (dispatch) => {
   dispatch({ type: types.EDIT_TODO_REQUEST });
   try {
     const res = await axios.patch(
-      `https://to-do-app-server-6sx6.onrender.com/todos/${id}`,
+      `https://notebook-server-8hzk.onrender.com/todos/${id}`,
       {
         id: id,
         title: title,
@@ -54,9 +54,7 @@ export const updatetodos = (editedtodos) => async (dispatch) => {
 export const deletetodos = (id) => async (dispatch) => {
   dispatch({ type: types.DELETE_TODO_REQUEST });
   try {
-    await axios.delete(
-      `https://to-do-app-server-6sx6.onrender.com/todos/${id}`
-    );
+    await axios.delete(`https://notebook-server-8hzk.onrender.com/todos/${id}`);
     dispatch({ type: types.DELETE_TODO_SUCCESS, payload: id });
   } catch (e) {
     dispatch({ type: types.DELETE_TODO_FAILURE, payload: e });

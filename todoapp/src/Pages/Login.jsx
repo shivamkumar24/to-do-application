@@ -11,7 +11,7 @@ const Login = () => {
   const LoginCheck = async () => {
     try {
       const res = await axios.get(
-        `https://to-do-app-server-6sx6.onrender.com/users`
+        `https://notebook-server-8hzk.onrender.com/users`
       );
       const data = res.data;
 

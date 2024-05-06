@@ -20,7 +20,7 @@ const Signup = () => {
     };
 
     axios
-      .post(`https://to-do-app-server-6sx6.onrender.com/users`, signupobj)
+      .post(`https://notebook-server-8hzk.onrender.com/users`, signupobj)
       .then((res) => {
         localStorage.setItem("signupdata", JSON.stringify(res.data));
         localStorage.setItem("isAuth", true);
