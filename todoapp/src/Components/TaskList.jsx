@@ -92,27 +92,27 @@ const TaskList = () => {
             <Box
               display="flex"
               flexDirection="column"
-              alignItems="center"
+              alignItems="left"
               key={ind}
               padding={"15px"}
               margin="10px"
               border="1px solid red"
               borderRadius="12px"
             >
-              <h3>
+              <text style={{ margin: "5px" }}>
                 <span style={{ fontWeight: "bold" }}>Title: </span>
                 {el.title}
-              </h3>
+              </text>
 
-              <h4>
+              <text style={{ margin: "5px" }}>
                 <span style={{ fontWeight: "bold" }}>Priority: </span>
                 {el.priorities}
-              </h4>
+              </text>
 
-              <h4>
+              <text style={{ margin: "5px" }}>
                 <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
                 {el.description}
-              </h4>
+              </text>
 
               <Button
                 variant="contained"
