@@ -22,3 +22,22 @@ To run this application locally, follow these steps:
 
 ```bash
 git clone https://github.com/shivamkumar24/to-do-application.git
+```
+
+2. Go to project folder:
+
+```bash
+cd todoapp
+```
+
+3. Install NPM:
+
+```bash
+npm install
+```
+
+4. Start Project:
+
+```bash
+npm run dev
+```
